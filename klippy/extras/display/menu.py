@@ -1235,7 +1235,10 @@ class MenuManager:
             'is1604': (self.rows == 4 and self.cols == 16),
             'is1602': (self.rows == 2 and self.cols == 16),
             'is20xx': (self.cols == 20),
-            'is16xx': (self.cols == 16)
+            'is16xx': (self.cols == 16),
+            'action_back': self.back,
+            'action_exit': self.exit,
+            'action_load_root': self.load_root
         }
 
     def update_parameters(self, eventtime):
