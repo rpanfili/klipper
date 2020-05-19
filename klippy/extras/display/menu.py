@@ -1172,6 +1172,8 @@ class MenuManager:
         self.load_root(root)
 
     def load_root(self, root=None, autorun=False):
+        gcode = self.printer.lookup_object("gcode")
+        gcode.respond_info("LOAD ROOT: %s" % (root if root is not None else "none"))
         root = self._root if root is None else root
         if root is not None:
             self.root = self.lookup_menuitem(root)
@@ -1575,6 +1577,8 @@ class MenuManager:
             name = " ".join(cfg.get_name().split()[1:])
             item = cfg.getchoice('type', menu_items)(self, cfg, name)
             self.add_menuitem(name, item)
+        gcode = self.printer.lookup_object("gcode")
+        gcode.respond_info('|'.join(self.menuitems.keys()))
 
     cmd_DO_help = "Menu do things"
 
