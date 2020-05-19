@@ -48,7 +48,12 @@ class TuningTower:
         # Compensate Z-Offset
         gcode = self.printer.lookup_object("gcode")
         z_offset = gcode.get_status(None)['base_zpos']
+
+        gcode.respond_info("Z-OFFSET: %.6f" % (z_offset))
+        gcode.respond_info("Z (before): %.6f" % (z))
         z = max(0, z - z_offset)
+        gcode.respond_info("Z (after): %.6f" % (z))
+
         if self.band:
             z = (math.floor(z / self.band) + .5) * self.band
         return self.start + z * self.factor
